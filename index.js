@@ -35,6 +35,15 @@ function slang(dest, opt) {
         }
         // if jcr_root is in file system path, remove before setting destination
         var destPath = file.path;
+
+        if (path.sep === '\\') {
+            var arr = destPath.split(path.sep);
+            if(arr[0] === 'c:') {
+                arr = arr.slice(1);
+            }
+            destPath = path.posix.join.apply(this, arr);
+        }
+
         if (path.dirname(destPath).indexOf('jcr_root/') !== -1) {
             destPath = destPath.substring(path.dirname(destPath)
                 .indexOf('jcr_root/') + 9);
