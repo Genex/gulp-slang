@@ -20,6 +20,7 @@ function slang(dest, opt) {
     var PORT = opt.port || 4502;
     var USER = opt.username || 'admin';
     var PASS = opt.password || 'admin';
+    var SHOWLOGSUCCESS = opt.showlogsuccess || true;
     var URL;
 
     // return stream to gulp
@@ -73,7 +74,7 @@ function slang(dest, opt) {
                 var message = response['status.message'] ? response['status.message'] : 'File Created';
                 var location = response.location ? response.location : file.path;
 
-                if (status === 200 || status === 201 ) {
+                if ((status === 200 || status === 201 ) && SHOWLOGSUCCESS) {
                     gutil.log( allgoodbold('File Upload Successful to port ') + allgood(PORT) + allgood(" : ") +
                         allgood(status) + ' - ' + allgood(message));
                     gutil.log(gray('Uploaded To: ') + gray(location));
