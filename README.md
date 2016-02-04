@@ -46,3 +46,8 @@ Type: `string`
 Default: `admin`
 
 Password for authentication.
+### showlogsuccess
+Type: `boolean`
+Default: `true`
+
+Show successful file uploads (200 and 201 status) 
